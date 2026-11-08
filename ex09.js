@@ -14,3 +14,21 @@
 const os = require("os");
 
 // write your code here
+function getCpuModels(callback) {
+  const cpus = os.cpus();
+  const models = cpus.map(function (cpu) {
+    return cpu.model;
+  });
+  callback(null, models);
+}
+
+getCpuModels(function (err, models) {
+  if (err) {
+    console.log("Error:", err.message);
+    return;
+  }
+
+  models.forEach(function (model, index) {
+    console.log("CPU " + index + ": " + model);
+  });
+});
